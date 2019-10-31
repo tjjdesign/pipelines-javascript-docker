@@ -1,0 +1,19 @@
+# Test image build
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/build-image?view=azure-devops
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'pipelines-javascript-docker'
+
+steps:
+  - task: Docker@2
+    displayName: Build an Image
+    inputs:
+      repository: $(imageName)
+      command: build
+      Dockerfile: app/Dockerfile
